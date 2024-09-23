@@ -2,6 +2,8 @@ const express = require('express');
 const router = express.Router();
 const agendaController = require('../controllers/agendaController');
 const salaController = require('../controllers/agendaController');
+const equipamentoController = require('../controllers/agendaController');
+const professorController = require('../controllers/agendaController');
 // lembrando que a rota raiz tem clientes, definido no app.js
 // Rota para obter todos os clientes
 router.get('/', agendaController.getAllAgenda);
@@ -14,26 +16,26 @@ router.delete('/:id', agendaController.deleteAgenda);
 
 router.get('/', salaController.getAllSala);
 // Rota para criar um novo cliente
-router.post('/', agendaController.createSala);
+router.post('/', salaController.createSala);
 // Rota para atualizar um cliente existente
-router.put('/:id', agendaController.updateSala);
+router.put('/:id', salaController.updateSala);
 // Rota para deletar um cliente
-router.delete('/:id', agendaController.deleteSala);
+router.delete('/:id', salaController.deleteSala);
 
-router.get('/', agendaController.getAllEquipamento);
+router.get('/', equipamentoController.getAllEquipamento);
 // Rota para criar um novo cliente
-router.post('/', agendaController.createEquipamento);
+router.post('/', equipamentoController.createEquipamento);
 // Rota para atualizar um cliente existente
-router.put('/', agendaController.updateEquipamento);
+router.put('/', equipamentoController.updateEquipamento);
 // Rota para deletar um cliente
-router.delete('/', agendaController.deleteEquipamento);
+router.delete('/', equipamentoController.deleteEquipamento);
 
-router.get('/', agendaController.getAllProfessor);
+router.get('/', professorController.getAllProfessor);
 // Rota para criar um novo cliente
-router.post('/', agendaController.createProfessor);
+router.post('/', professorController.createProfessor);
 // Rota para atualizar um cliente existente
-router.put('/:id', agendaController.updateProfessor);
+router.put('/:id', professorController.updateProfessor);
 // Rota para deletar um cliente
-router.delete('/:id', agendaController.deleteProfessor);
+router.delete('/:id', professorController.deleteProfessor);
 
 module.exports = router;

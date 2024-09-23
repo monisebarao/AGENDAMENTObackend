@@ -19,12 +19,12 @@ function getAllProfessor(callback) {
     });
   }
 
-  function createProfessor(professor, callback) {
-    const { nome_prof} = professor;
+  function createProfessor( professor, callback) {
+    const { nif_prof, nome_prof} = professor;
     const db = openDbConnection();
     db.run(
-      "INSERT INTO produtos (nome_prof) VALUES (?)",
-      [nome_prof],
+      "INSERT INTO produtos (nif_prof, nome_prof) VALUES (?,?)",
+      [nif_prof, nome_prof],
       function (err) {
         db.close();
         callback(err, { id: this.lastID });

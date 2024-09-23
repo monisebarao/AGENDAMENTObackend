@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const professorController = require('../controllers/agendaController');
+const professorController = require('../controllers/professorController');
 
 router.get('/', professorController.getAllProfessor);
 // Rota para criar um novo cliente

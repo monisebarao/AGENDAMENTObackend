@@ -1,17 +1,17 @@
-const Agenda = require('../models/agenda');
+const Sala = require('../models/sala');
 
-exports.getAllAgenda = (req, res) => {
-    Agenda.getAllAgenda((err, agenda) => {
+exports.getAllSala = (req, res) => {
+    Sala.getAllSala((err, sala) => {
         if (err) {
             res.status(500).send(err);
         } else {
-            res.json(agenda);
+            res.json(sala);
         }
     });
-};
+  };
 
-exports.createAgenda = (req, res) => {
-    Agenda.createAgenda(req.body, (err, result) => {
+  exports.createSala = (req, res) => {
+    Sala.createSala(req.body, (err, result) => {
       if (err) {
         res.status(500).send(err);
       } else {
@@ -19,10 +19,9 @@ exports.createAgenda = (req, res) => {
       }
     });
   };
-  
-  // Controlador para atualizar um cliente existente
-  exports.updateAgenda = (req, res) => {
-    Agenda.updateAgenda(req.params.id, req.body, (err, result) => {
+
+  exports.updateSala = (req, res) => {
+    Sala.updateSala(req.params.id, req.body, (err, result) => {
       if (err) {
         res.status(500).send(err);
       } else if (result.changes) {
@@ -33,9 +32,8 @@ exports.createAgenda = (req, res) => {
     });
   };
 
-  // Controlador para deletar um cliente
-  exports.deleteAgenda = (req, res) => {
-    Agenda.deleteAgenda(req.params.id, (err, result) => {
+  exports.deleteSala = (req, res) => {
+    sala.deleteSala(req.params.id, (err, result) => {
       if (err) {
         res.status(500).send(err);
       } else if (result.changes) {

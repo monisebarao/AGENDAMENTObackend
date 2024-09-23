@@ -1,17 +1,17 @@
-const Agenda = require('../models/agenda');
+const Equipamento = require('../models/equipamento');
 
-exports.getAllAgenda = (req, res) => {
-    Agenda.getAllAgenda((err, agenda) => {
+exports.getAllEquipamento = (req, res) => {
+    Equipamento.getAllEquipamento((err, equipamento) => {
         if (err) {
             res.status(500).send(err);
         } else {
-            res.json(agenda);
+            res.json(equipamento);
         }
     });
-};
+  };
 
-exports.createAgenda = (req, res) => {
-    Agenda.createAgenda(req.body, (err, result) => {
+exports.createEquipamento = (req, res) => {
+    Equipamento.createEquipamento(req.body, (err, result) => {
       if (err) {
         res.status(500).send(err);
       } else {
@@ -19,10 +19,9 @@ exports.createAgenda = (req, res) => {
       }
     });
   };
-  
-  // Controlador para atualizar um cliente existente
-  exports.updateAgenda = (req, res) => {
-    Agenda.updateAgenda(req.params.id, req.body, (err, result) => {
+
+  exports.updateEquipamento = (req, res) => {
+    Equipamento.updateEquipamento(req.body, (err, result) => {
       if (err) {
         res.status(500).send(err);
       } else if (result.changes) {
@@ -32,10 +31,9 @@ exports.createAgenda = (req, res) => {
       }
     });
   };
-
-  // Controlador para deletar um cliente
-  exports.deleteAgenda = (req, res) => {
-    Agenda.deleteAgenda(req.params.id, (err, result) => {
+  
+  exports.deleteEquipamento = (req, res) => {
+   Equipamento.deleteEquipamento( (err, result) => {
       if (err) {
         res.status(500).send(err);
       } else if (result.changes) {

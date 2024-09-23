@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const salaController = require('../controllers/agendaController');
+const salaController = require('../controllers/salaController');
 
 router.get('/', salaController.getAllSala);
 // Rota para criar um novo cliente

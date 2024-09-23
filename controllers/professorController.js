@@ -1,17 +1,17 @@
-const Agenda = require('../models/agenda');
+const Professor = require('../models/professor');
 
-exports.getAllAgenda = (req, res) => {
-    Agenda.getAllAgenda((err, agenda) => {
+exports.getAllProfessor = (req, res) => {
+    Professor.getAllProfessor((err, professor) => {
         if (err) {
             res.status(500).send(err);
         } else {
-            res.json(agenda);
+            res.json(professor);
         }
     });
-};
+  };
 
-exports.createAgenda = (req, res) => {
-    Agenda.createAgenda(req.body, (err, result) => {
+  exports.createProfessor = (req, res) => {
+    Professor.createProfessor(req.body, (err, result) => {
       if (err) {
         res.status(500).send(err);
       } else {
@@ -19,10 +19,9 @@ exports.createAgenda = (req, res) => {
       }
     });
   };
-  
-  // Controlador para atualizar um cliente existente
-  exports.updateAgenda = (req, res) => {
-    Agenda.updateAgenda(req.params.id, req.body, (err, result) => {
+
+  exports.updateProfessor = (req, res) => {
+    Professor.updateProfessor(req.params.id, req.body, (err, result) => {
       if (err) {
         res.status(500).send(err);
       } else if (result.changes) {
@@ -33,9 +32,8 @@ exports.createAgenda = (req, res) => {
     });
   };
 
-  // Controlador para deletar um cliente
-  exports.deleteAgenda = (req, res) => {
-    Agenda.deleteAgenda(req.params.id, (err, result) => {
+  exports.deleteProfessor = (req, res) => {
+    Professor.deleteProfessor(req.params.id, (err, result) => {
       if (err) {
         res.status(500).send(err);
       } else if (result.changes) {

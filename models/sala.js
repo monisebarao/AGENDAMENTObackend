@@ -23,7 +23,7 @@ function getAllSala(callback) {
     const { nome_sala} = sala;
     const db = openDbConnection();
     db.run(
-      "INSERT INTO produtos (nome_sala) VALUES (?)",
+      "INSERT INTO sala (nome_sala) VALUES (?)",
       [nome_sala],
       function (err) {
         db.close();

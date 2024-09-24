@@ -23,7 +23,7 @@ function getAllEquipamento(callback) {
     const { PATRIMÔNIO, DESCRIÇÃO, LOCAL} = equipamento;
     const db = openDbConnection();
     db.run(
-      "INSERT INTO produtos (PATRIMÔNIO, DESCRIÇÃO, LOCAL) VALUES (?, ?, ?)",
+      "INSERT INTO equipamento (PATRIMÔNIO, DESCRIÇÃO, LOCAL) VALUES (?, ?, ?)",
       [PATRIMÔNIO, DESCRIÇÃO, LOCAL],
       function (err) {
         db.close();

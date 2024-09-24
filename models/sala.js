@@ -19,12 +19,12 @@ function getAllSala(callback) {
     });
   }
 
-  function createSala(sala, callback) {
+  function createSala(cod_sala, sala, callback) {
     const { nome_sala} = sala;
     const db = openDbConnection();
     db.run(
       "INSERT INTO sala (nome_sala) VALUES (?)",
-      [nome_sala],
+      [cod_sala, nome_sala],
       function (err) {
         db.close();
         callback(err, { id: this.lastID });

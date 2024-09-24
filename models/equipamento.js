@@ -20,11 +20,11 @@ function getAllEquipamento(callback) {
   }
 
   function createEquipamento(equipamento, callback) {
-    const { PATRIMÔNIO, DESCRIÇÃO, LOCAL} = equipamento;
+    const { patrimonio, descricao, local} = equipamento;
     const db = openDbConnection();
     db.run(
-      "INSERT INTO equipamento (PATRIMÔNIO, DESCRIÇÃO, LOCAL) VALUES (?, ?, ?)",
-      [PATRIMÔNIO, DESCRIÇÃO, LOCAL],
+      "INSERT INTO equipamento (patrimonio, descricao, local) VALUES (?, ?, ?)",
+      [patrimonio, descricao, local],
       function (err) {
         db.close();
         callback(err, { id: this.lastID });
@@ -32,12 +32,12 @@ function getAllEquipamento(callback) {
     );
   }
 
-  function updateEquipamento(PATRIMÔNIO, equipamento, callback) {
-    const {DESCRIÇÃO, LOCAL } = equipamento;
+  function updateEquipamento(patrimonio, equipamento, callback) {
+    const {patrimonio, descricao, local } = equipamento;
     const db = openDbConnection();
     db.run(
-      "UPDATE equipamento SET DESCRIÇÃO = ?, LOCAL = ? WHERE PATRIMÔNIO = ?",
-      [DESCRIÇÃO, LOCAL, PATRIMÔNIO],
+      "UPDATE equipamento SET patriomonio= ?, descricao = ?, local = ? WHERE patrimonio = ?",
+      [patrimonio, descricao, local],
       function (err) {
         db.close();
         callback(err, { changes: this.changes });

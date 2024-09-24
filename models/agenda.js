@@ -22,11 +22,11 @@ function getAllAgenda(callback) {
 
 // Função para criar um novo cliente
 function createAgenda(agenda, callback) {
-  const {agenda_id, data_sel, horario, nif_Prof, cod_sala, PATRIMôNIO } = agenda;
+  const { data_sel, horario, nif_Prof, cod_sala, PATRIMôNIO } = agenda;
   const db = openDbConnection();
   db.run(
     "INSERT INTO agenda ( data_sel, horario, nif_Prof, cod_sala, PATRIMôNIO ) VALUES (?, ?, ?, ?, ?)",
-    [agenda_id, data_sel, horario, nif_Prof, cod_sala, PATRIMôNIO ],
+    [data_sel, horario, nif_Prof, cod_sala, PATRIMôNIO],
     function (err) {
       db.close();
       callback(err, { id: this.lastID });

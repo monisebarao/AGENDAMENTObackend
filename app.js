@@ -1,34 +1,26 @@
 // app.js
-
-// Importa o módulo "express" para criar o servidor
-const express = require("express");
-
-// Cria uma instância do Express, que será usada como a aplicação principal
+const express = require('express');
 const app = express();
-
-// Importa o middleware "cors" para habilitar o compartilhamento de recursos entre diferentes origens (Cross-Origin Resource Sharing)
-const cors = require('cors');
-
-// Define a porta em que o servidor vai rodar. Primeiro tenta usar a variável de ambiente PORT, senão usa a porta 3001
-const port = process.env.PORT || 3001;
-
-// Carrega as variáveis de ambiente do arquivo .env
-require("dotenv").config();
-
-// Middleware do Express para interpretar o corpo das requisições como JSON
+const port = 3000;
+const cors = require ("cors")
+// Middleware para analisar o corpo das requisições em JSON
 app.use(express.json());
-
-// Middleware "cors" para permitir requisições de diferentes origens (evita problemas de CORS)
 app.use(cors());
+// Importando as rotas do cliente
+const AgendaRoutes = require('./routes/agendaRoutes');
+// Usando as rotas do cliente com o prefixo '/clientes'
+app.use('/agenda', AgendaRoutes);
+// Iniciando o servidor na porta especificada
+const SalaRoutes = require('./routes/salaRoutes');
+// Usando as rotas do cliente com o prefixo '/clientes'
+app.use('/sala', SalaRoutes);
+const EquipamentoRoutes = require('./routes/equipamentoRoutes');
+// Usando as rotas do cliente com o prefixo '/clientes'
+app.use('/equipamento', EquipamentoRoutes);
+const ProfessorRoutes = require('./routes/professorRoutes');
+// Usando as rotas do cliente com o prefixo '/clientes'
+app.use('/professor', ProfessorRoutes);
 
-// Importa as rotas de usuários definidas em "./routes/users"
-const userRoutes = require("./routes/sala");
-
-// Associa as rotas de usuários ao caminho "/users"
-// Todas as requisições que começarem com "/users" serão tratadas pelas rotas definidas em "userRoutes"
-app.use("/sala", userRoutes);
-
-// Inicia o servidor na porta definida e exibe uma mensagem no console
 app.listen(port, () => {
-  console.log(`Servidor rodando em http://localhost:${port}`);
+console.log(`Servidor rodando em http://localhost:${port}`);
 });

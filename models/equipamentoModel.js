@@ -60,16 +60,16 @@ async function createEquipamento(cod_eqp,patrimonio, descricao, local) {
   await executeQuery(query, params);
 }
 
-async function updateEquipamento(cod_eqp,patrimonio, descricao, local) {  // Corrigido aqui
+async function updateEquipamento(eqp_id,patrimonio, descricao, local) {  // Corrigido aqui
   const query = `UPDATE equipamento SET patrimonio = @patrimonio, descricao = @descricao, local = @local WHERE cod_eqp = @eqp_id;`;  // Ajustado para atualizar pelo cod_sala
    const params = [
     // Corrigido aqui
-    { name: "cod_eqp", type: TYPES.Int, value: cod_eqp },
+    { name: "eqp_id", type: TYPES.Int, value: eqp_id },
     { name: "patrimonio", type: TYPES.NVarChar, value: patrimonio },
     { name: "descricao", type: TYPES.NVarChar, value: descricao },
     { name: "local", type: TYPES.NVarChar, value: local },
   ];
-  if (!cod_eqp){
+  if (!eqp_id){
     res.status(400).send({message: 'Dados incompletos'}); return;  }
   await executeQuery(query, params);
 }

@@ -50,7 +50,7 @@ async function getProfessorById(id) {
 }
 
 async function createProfessor(id_prof ,nif_prof, nome_prof) {
-  const query = `INSERT INTO professor (id_prof,nif_prof, nome_prof) VALUES ( id_prof,@nif_prof, @nome_prof);`;
+  const query = `INSERT INTO professor (id_prof,nif_prof, nome_prof) VALUES ( @id_prof,@nif_prof, @nome_prof);`;
   const params = [
     {name: "id_prof", type: TYPES.Int, value: id_prof},
     { name: "nif_prof", type: TYPES.NVarChar, value: nif_prof },

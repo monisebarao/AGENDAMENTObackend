@@ -5,22 +5,22 @@ const express = require("express");
 const router = express.Router();
 
 // Importa o controller de agendamentos que contém a lógica para cada rota
-const equipamentoController = require("../controllers/equipamentoController");
+const agenda1Controller = require("../controllers/agenda1Controller");
 
 // Rota GET para obter todos os agendamentos
-router.get("/", equipamentoController.getAllEquipamento);
+router.get("/", agenda1Controller.getAllAgenda1);
 
 // Rota GET para obter um agendamento específico pelo ID
-router.get("/:id", equipamentoController.getEquipamento);
+router.get("/:id", agenda1Controller.getAgenda1);
 
 // Rota POST para criar um novo agendamento
-router.post("/", equipamentoController.createEquipamento);
+router.post("/", agenda1Controller.createAgenda1);
 
 // Rota PUT para atualizar um agendamento existente pelo ID
-router.put("/:id", equipamentoController.updateEquipamento);
+router.put("/:id", agenda1Controller.updateAgenda1);
 
 // Rota DELETE para deletar um agendamento específico pelo ID
-router.delete("/:id", equipamentoController.deleteEquipamento);
+router.delete("/:id", agenda1Controller.deleteAgenda1);
 
 // Exporta o roteador para que ele possa ser usado na aplicação principal (app.js)
 module.exports = router;

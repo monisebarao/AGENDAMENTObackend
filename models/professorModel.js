@@ -37,46 +37,49 @@ async function executeQuery(query, params = []) {
   });
 }
 
-async function getAllSala() {
-  const query = "SELECT * FROM sala;";
+async function getAllProfessor() {
+  const query = "SELECT * FROM professor;";
   return await executeQuery(query);
 }
 
-async function getSalaById(id) {
-  const query = "SELECT * FROM sala WHERE cod_sala = @id;";
+async function getProfessorById(id) {
+  const query = "SELECT * FROM professor WHERE id_prof = @id;";
   const params = [{ name: "id", type: TYPES.Int, value: id }];
   const sala = await executeQuery(query, params);
   return sala.length > 0 ? sala[0] : null;
 }
 
-async function createSala(cod_sala, nome_sala) {
-  const query = `INSERT INTO sala (cod_sala, nome_sala) VALUES (@cod_sala, @nome_sala);`;
+async function createProfessor(id_prof ,nif_prof, nome_prof) {
+  const query = `INSERT INTO professor (id_prof,nif_prof, nome_prof) VALUES ( id_prof,@nif_prof, @nome_prof);`;
   const params = [
-    { name: "cod_sala", type: TYPES.Int, value: cod_sala },  // Corrigido aqui
-    { name: "nome_sala", type: TYPES.NVarChar, value: nome_sala },
+    {name: "id_prof", type: TYPES.Int, value: id_prof},
+    { name: "nif_prof", type: TYPES.NVarChar, value: nif_prof },
+    { name: "nome_prof", type: TYPES.NVarChar, value: nome_prof },
   ];
   await executeQuery(query, params);
 }
 
-async function updateSala(cod_sala, nome_sala) {  // Corrigido aqui
-  const query = `UPDATE sala SET nome_sala = @nome_sala WHERE cod_sala = @cod_sala;`;  // Ajustado para atualizar pelo cod_sala
-  const params = [
-    { name: "cod_sala", type: TYPES.Int, value: cod_sala },  // Corrigido aqui
-    { name: "nome_sala", type: TYPES.NVarChar, value: nome_sala },
+async function updateProfessor(id_prof,nif_prof, nome_prof) {  // Corrigido aqui
+  const query = `UPDATE professor SET nif_prof = @nif_prof, nome_prof = @nome_prof  WHERE id_prof = @id_prof;`;  // Ajustado para atualizar pelo cod_sala
+   const params = [
+    // Corrigido aqui
+    { name: "id_prof", type: TYPES.Int, value: id_prof },
+    { name: "nif_prof", type: TYPES.NVarChar, value: nif_prof },
+    { name: "nome_prof", type: TYPES.NVarChar, value: nome_prof },
   ];
   await executeQuery(query, params);
 }
 
-async function deleteSala(id) {
-  const query = "DELETE FROM sala WHERE cod_sala = @id;";
+async function deleteProfessor(id) {
+  const query = "DELETE FROM professor WHERE id_prof = @id;";
   const params = [{ name: "id", type: TYPES.Int, value: id }];
   await executeQuery(query, params);
 }
 
 module.exports = {
-  getAllSala,
-  getSalaById,
-  createSala,
-  updateSala,
-  deleteSala,
+  getAllProfessor,
+  getProfessorById,
+  createProfessor,
+  updateProfessor,
+  deleteProfessor,
 };

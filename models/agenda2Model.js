@@ -49,24 +49,26 @@ async function getAgenda2ById(id) {
   return sala.length > 0 ? sala[0] : null;
 }
 
-async function createAgenda2(data_sel2, horario2, id_prof, cod_eqp) {
-  const query = `INSERT INTO agenda2 (data_sel2, horario2, id_prof, cod_eqp) VALUES ( @data_sel2, @horario2, @id_prof, @cod_eqp);`;
+async function createAgenda2(data_sel2, hr_entrada2, hr_saida2 , id_prof, cod_eqp) {
+  const query = `INSERT INTO agenda2 (data_sel2, hr_entrada2, hr_saida2, id_prof, cod_eqp) VALUES ( @data_sel2, @hr_entrada2, @hr_saida2, @id_prof, @cod_eqp);`;
   const params = [
     { name: "data_sel2", type: TYPES.NVarChar, value: data_sel2 },
-    { name: "horario2", type: TYPES.NVarChar, value: horario2 },
+    { name: "hr_entrada2", type: TYPES.NVarChar, value: hr_entrada2 },
+    { name: "hr_saida2", type: TYPES.NVarChar, value: hr_saida2 },
     { name: "id_prof", type: TYPES.Int, value: id_prof },
     { name: "cod_eqp", type: TYPES.Int, value: cod_eqp },
   ];
   await executeQuery(query, params);
 }
 
-async function updateAgenda2(agenda2_id, data_sel2,horario2,id_prof,cod_eqp) {  // Corrigido aqui
-  const query = `UPDATE agenda2 SET data_sel2 = @data_sel2, horario2 = @horario2, id_prof = @id_prof, cod_eqp = @cod_eqp  WHERE agenda2_id = @agenda2_id;`;  // Ajustado para atualizar pelo cod_sala
+async function updateAgenda2(agenda2_id, data_sel2,hr_entrada2, hr_saida2, id_prof,cod_eqp) {  // Corrigido aqui
+  const query = `UPDATE agenda2 SET data_sel2 = @data_sel2, hr_entrada2 = @hr_entrada2, hr_saida2 = @hr_saida2, id_prof = @id_prof, cod_eqp = @cod_eqp  WHERE agenda2_id = @agenda2_id;`;  // Ajustado para atualizar pelo cod_sala
    const params = [
     // Corrigido aqui
     { name:"agenda2_id", type: TYPES.Int, value: agenda2_id},
     { name: "data_sel2", type: TYPES.NVarChar, value: data_sel2 },
-    { name: "horario2", type: TYPES.NVarChar, value: horario2 },
+    { name: "hr_entrada2", type: TYPES.NVarChar, value: hr_entrada2 },
+    { name: "hr_saida2", type: TYPES.NVarChar, value: hr_saida2 },
     { name: "id_prof", type: TYPES.Int, value: id_prof },
     { name: "cod_eqp", type: TYPES.Int, value: cod_eqp },
   ];

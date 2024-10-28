@@ -92,6 +92,27 @@ async function deleteAgenda1(req, res) {
   }
 }
 
+async function getAgenda1ByData(req, res) {
+  // Extrai o ID do usuário da requisição (usado na URL: /users/:id)
+  const data = req.params.data;
+  try {
+    // Chama o método do modelo para obter o usuário com base no ID fornecido
+    const agenda1 = await agenda1Model.getAgenda1ByData(data);
+    
+    // Se o usuário não for encontrado, retorna um status 404 (não encontrado)
+    if (!agenda1) {
+      res.status(404).send("Agenda não encontrada");
+    } else {
+      // Se o usuário for encontrado, retorna os dados em formato JSON
+      res.json(agenda1);
+    }
+  } catch (err) {
+    // Exibe o erro no console e retorna uma resposta com status 500
+    console.error(err.message);
+    res.status(500).send("Erro ao obter a agenda");
+  }
+}
+
 // Exporta as funções do controller para serem usadas nas rotas da aplicação
 module.exports = {
   getAllAgenda1,
@@ -99,4 +120,5 @@ module.exports = {
   createAgenda1,
   updateAgenda1,
   deleteAgenda1,
+  getAgenda1ByData,
 };

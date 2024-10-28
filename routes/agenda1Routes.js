@@ -22,5 +22,8 @@ router.put("/:id", agenda1Controller.updateAgenda1);
 // Rota DELETE para deletar um agendamento específico pelo ID
 router.delete("/:id", agenda1Controller.deleteAgenda1);
 
+// Rota GET para obter um agendamento específico pelo ID
+router.get("/data/:data", agenda1Controller.getAgenda1ByData);
+
 // Exporta o roteador para que ele possa ser usado na aplicação principal (app.js)
 module.exports = router;

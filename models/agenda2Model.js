@@ -83,10 +83,18 @@ async function deleteAgenda2(id) {
   await executeQuery(query, params);
 }
 
+async function getAgenda2ByData(data) {
+  const query = "SELECT * FROM agenda2 WHERE data_sel2 <= @data;";
+  const params = [{ name: "data", type: TYPES.NVarChar, value: data }];
+  const sala = await executeQuery(query, params);
+  return sala.length > 0 ? sala[0] : null;
+}
+
 module.exports = {
   getAllAgenda2,
   getAgenda2ById,
   createAgenda2,
   updateAgenda2,
   deleteAgenda2,
+  getAgenda2ByData,
 };

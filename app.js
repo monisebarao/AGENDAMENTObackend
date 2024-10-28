@@ -27,6 +27,16 @@ app.use('/professor', ProfessorRoutes);
 const EquipamentoRoutes = require('./routes/equipamentoRoutes'); // Certifique-se de que este arquivo também existe
 app.use('/equipamento', EquipamentoRoutes);
 
+// Importando as rotas da sala
+const salaConsultaRoutes = require('./routes/salaConsultaRoutes'); // Certifique-se de que este arquivo também existe
+app.use('/salaConsulta', salaConsultaRoutes);
+
+// Importando as rotas da sala
+const equipamentoConsultaRoutes = require('./routes/equipamentoConsultaRoutes'); // Certifique-se de que este arquivo também existe
+app.use('/equipamentoConsulta', equipamentoConsultaRoutes);
+
+
+
 
 
 // Iniciando o servidor na porta especificada

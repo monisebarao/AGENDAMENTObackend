@@ -42,7 +42,49 @@ async function getAllSalaConsulta() {
   return await executeQuery(query);
 }
 
+async function getConsultaLMT(id) {
+  const query = "SELECT * FROM sala_consulta WHERE cod_sala = 1 ;";
+  const params = [{ name: "id", type: TYPES.Int, value: id }];
+  return await executeQuery(query, params);
+}
+
+async function getConsultaMaker(id) {
+  const query = "SELECT * FROM sala_consulta WHERE cod_sala = 2 ;";
+  const params = [{ name: "id", type: TYPES.Int, value: id }];
+  return await executeQuery(query, params);
+}
+
+async function getConsultaBiblioteca(id) {
+  const query = "SELECT * FROM sala_consulta WHERE cod_sala = 3 ;";
+  const params = [{ name: "id", type: TYPES.Int, value: id }];
+  return await executeQuery(query, params);
+}
+
+async function getConsultaFisica(id) {
+  const query = "SELECT * FROM sala_consulta WHERE cod_sala = 4 ;";
+  const params = [{ name: "id", type: TYPES.Int, value: id }];
+  return await executeQuery(query, params);
+}
+
+async function getConsultaBioquimica(id) {
+  const query = "SELECT * FROM sala_consulta WHERE cod_sala = 5;";
+  const params = [{ name: "id", type: TYPES.Int, value: id }];
+  return await executeQuery(query, params);
+}
+
+async function getConsultaSenai(id) {
+  const query = "SELECT * FROM sala_consulta WHERE cod_sala = 6;";
+  const params = [{ name: "id", type: TYPES.Int, value: id }];
+  return await executeQuery(query,params);
+}
+
 
 module.exports = {
   getAllSalaConsulta,
+  getConsultaLMT,
+  getConsultaMaker,
+  getConsultaBiblioteca,
+  getConsultaFisica,
+  getConsultaBioquimica,
+  getConsultaSenai,
 };

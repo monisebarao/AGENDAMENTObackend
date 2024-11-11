@@ -49,23 +49,30 @@ async function getAgenda1ById(id) {
   return sala.length > 0 ? sala[0] : null;
 }
 
-async function createAgenda1(data_sel1, horario1, id_prof, cod_sala) {
-  const query = `INSERT INTO agenda1 (data_sel1, horario1, id_prof, cod_sala) VALUES ( @data_sel1, @horario1, @id_prof, @cod_sala);`;
+async function createAgenda1(data_sel1, hr_entrada1, hr_saida1, turma1, disciplina1, id_prof, cod_sala) {
+  const query = `INSERT INTO agenda1 (data_sel1, hr_entrada1, hr_saida1, turma1, disciplina1, id_prof, cod_sala) values ( @data_sel1, @hr_entrada1, @hr_saida1, @turma1, @disciplina1, @id_prof, @cod_sala);`;
   const params = [
     { name: "data_sel1", type: TYPES.NVarChar, value: data_sel1 },
-    { name: "horario1", type: TYPES.NVarChar, value: horario1 },
+    { name: "hr_entrada1", type: TYPES.NVarChar, value: hr_entrada1 },
+    { name: "hr_saida1", type: TYPES.NVarChar, value: hr_saida1 },
+    { name: "turma1", type: TYPES.NVarChar, value: turma1 },
+    { name: "disciplina1", type: TYPES.NVarChar, value: disciplina1 },
     { name: "id_prof", type: TYPES.Int, value: id_prof },
     { name: "cod_sala", type: TYPES.Int, value: cod_sala },
+
   ];
   await executeQuery(query, params);
 }
 
-async function updateAgenda1(agenda1_id, data_sel1, horario1, id_prof, cod_sala) {  // Corrigido aqui
-  const query = `UPDATE agenda1 SET data_sel1 = @data_sel1, horario1 = @horario1, id_prof = @id_prof, cod_sala = @cod_sala  WHERE agenda1_id = @agenda1_id;`;  // Ajustado para atualizar pelo cod_sala
+async function updateAgenda1(data_sel1, hr_entrada1, hr_saida1, turma1, disciplina1, id_prof, cod_sala) {  // Corrigido aqui
+  const query = `UPDATE agenda1 SET data_sel1 = @data_sel1, hr_entrada1 = @hr_entrada1, hr_saida1 = @hr_saida, turma1 = @turma1, disciplina1 = @disciplina1, id_prof = @id_prof, cod_sala = @cod_sala  WHERE agenda1_id = @agenda1_id;`;  // Ajustado para atualizar pelo cod_sala
   const params = [
     { name: "agenda1_id", type: TYPES.Int, value: agenda1_id },  // Corrigido aqui
     { name: "data_sel1", type: TYPES.NVarChar, value: data_sel1 },
-    { name: "horario1", type: TYPES.NVarChar, value: horario1 },
+    { name: "hr_entrada1", type: TYPES.NVarChar, value: hr_entrada1 },
+    { name: "hr_saida1", type: TYPES.NVarChar, value: hr_saida1 },
+    { name: "turma1", type: TYPES.NVarChar, value: turma1 },
+    { name: "disciplina1", type: TYPES.NVarChar, value: disciplina11 },
     { name: "id_prof", type: TYPES.Int, value: id_prof },
     { name: "cod_sala", type: TYPES.Int, value: cod_sala },
   ];

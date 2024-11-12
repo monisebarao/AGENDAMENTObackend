@@ -13,5 +13,7 @@ const salaConsultaController = require("../controllers/salaConsultaController");
 // Chama o método "getUsers" do controller quando a rota raiz "/users" for acessada
 router.get("/", salaConsultaController.getAllSalaConsulta);
 
+router.get("/", salaConsultaController.createSalaConsulta);
+
 // Exporta o roteador para que ele possa ser usado na aplicação principal (app.js)
 module.exports = router;

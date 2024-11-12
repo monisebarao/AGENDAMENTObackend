@@ -14,7 +14,7 @@ router.get("/", agenda1Controller.getAllAgenda1);
 router.get("/:id", agenda1Controller.getAgenda1);
 
 // Rota POST para criar um novo agendamento
-router.post("/", agenda1Controller.createAgenda1);
+router.post("/:id", agenda1Controller.createAgenda1);
 
 // Rota PUT para atualizar um agendamento existente pelo ID
 router.put("/:id", agenda1Controller.updateAgenda1);

@@ -61,12 +61,12 @@ async function createEquipamento(req, res) {
 async function updateEquipamento(req, res) {
   // Extrai o ID do usuário da URL e os novos dados do corpo da requisição
   const eqp_id = req.params.id;
-  const { patrimonio, descricao, local } = req.body;
+  const { cod_eqp,patrimonio, descricao, local } = req.body;
   try {
     // Chama o método do modelo para atualizar o usuário com base no ID e nos dados fornecidos
    if (!eqp_id){
     res.status(400).send({message: 'Dados incompletos'}); return;  }
-    await equipamentoModel.updateEquipamento(eqp_id,patrimonio, descricao, local);
+    await equipamentoModel.updateEquipamento(cod_eqp,patrimonio, descricao, local);
     
     // Retorna uma mensagem de sucesso após a atualização
     res.send("Equipamento atualizado com sucesso");

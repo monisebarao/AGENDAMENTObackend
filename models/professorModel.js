@@ -49,12 +49,11 @@ async function getProfessorById(id) {
   return sala.length > 0 ? sala[0] : null;
 }
 
-async function createProfessor(id_prof ,nif_prof, nome_prof) {
-  const query = `INSERT INTO professor (id_prof,nif_prof, nome_prof) VALUES ( id_prof,@nif_prof, @nome_prof);`;
+async function createProfessor(nif_prof, nome_prof) {
+  const query = `INSERT INTO professor (nif_prof, nome_prof) VALUES ( @nif_prof, @nome_prof);`;
   const params = [
-    {name: "id_prof", type: TYPES.Int, value: id_prof},
-    { name: "nif_prof", type: TYPES.NVarChar, value: nif_prof },
-    { name: "nome_prof", type: TYPES.NVarChar, value: nome_prof },
+    { name: "nif_prof", type: TYPES.VarChar, value: nif_prof },
+    { name: "nome_prof", type: TYPES.VarChar, value: nome_prof },
   ];
   await executeQuery(query, params);
 }

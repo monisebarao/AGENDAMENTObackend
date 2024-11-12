@@ -43,10 +43,10 @@ async function getProfessor(req, res) {
 // Função para criar um novo usuário
 async function createProfessor(req, res) {
   // Extrai as informações do novo usuário a partir do corpo da requisição (name, email, age)
-  const {id_prof,nif_prof, nome_prof } = req.body;
+  const {nif_prof, nome_prof } = req.body;
   try {
     // Chama o método do modelo para criar o novo usuário com os dados fornecidos
-    await professorModel.createProfessor(id_prof,nif_prof, nome_prof);
+    await professorModel.createProfessor(nif_prof, nome_prof);
     
     // Retorna um status 201 (criado com sucesso)
     res.status(201).send("Professor(a) criado com sucesso");

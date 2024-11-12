@@ -14,7 +14,7 @@ router.get("/", professorController.getAllProfessor);
 router.get("/:id", professorController.getProfessor);
 
 // Rota POST para criar um novo agendamento
-router.post("/:id", professorController.createProfessor);
+router.post("/criar", professorController.createProfessor);
 
 // Rota PUT para atualizar um agendamento existente pelo ID
 router.put("/:id", professorController.updateProfessor);

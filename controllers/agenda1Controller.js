@@ -42,17 +42,28 @@ async function getAgenda1(req, res) {
 
 // Função para criar um novo usuário
 async function createAgenda1(req, res) {
-  // Extrai as informações do novo usuário a partir do corpo da requisição (name, email, age)
-  const {data_sel1, hr_entrada1, hr_saida1, id_prof, cod_sala } = req.body;
+  const { data_sel1, hr_entrada1, hr_saida1, turma1, disciplina1, id_prof, cod_sala } = req.body;
+
+  console.log("Dados recebidos no controlador:", {
+    data_sel1,
+    hr_entrada1,
+    hr_saida1,
+    turma1,
+    disciplina1,
+    id_prof,
+    cod_sala,
+  });
+
+  // Verificação básica para garantir que todos os dados necessários estão presentes
+  if (!data_sel1 || !hr_entrada1 || !hr_saida1 || !turma1 || !disciplina1 || !id_prof || !cod_sala) {
+    return res.status(400).send("Todos os campos são obrigatórios.");
+  }
+
   try {
-    // Chama o método do modelo para criar o novo usuário com os dados fornecidos
-    await agenda1Model.createAgenda1(data_sel1, hr_entrada1, hr_saida1, id_prof, cod_sala);
-    
-    // Retorna um status 201 (criado com sucesso)
+    await agenda1Model.createAgenda1(data_sel1, hr_entrada1, hr_saida1, turma1, disciplina1, id_prof, cod_sala);
     res.status(201).send("Agenda criada com sucesso");
   } catch (err) {
-    // Exibe o erro no console e retorna uma resposta com status 500
-    console.error(err.message);
+    console.error("Erro ao criar a agenda:", err.message);
     res.status(500).send("Erro ao criar a agenda");
   }
 }

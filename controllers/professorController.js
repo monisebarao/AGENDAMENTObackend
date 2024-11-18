@@ -43,10 +43,10 @@ async function getProfessor(req, res) {
 // Função para criar um novo usuário
 async function createProfessor(req, res) {
   // Extrai as informações do novo usuário a partir do corpo da requisição (name, email, age)
-  const {id_prof,nif_prof, nome_prof, adm } = req.body;
+  const {nif_prof, nome_prof } = req.body;
   try {
     // Chama o método do modelo para criar o novo usuário com os dados fornecidos
-    await professorModel.createProfessor(id_prof,nif_prof, nome_prof, adm );
+    await professorModel.createProfessor(nif_prof, nome_prof);
     
     // Retorna um status 201 (criado com sucesso)
     res.status(201).send("Professor(a) criado com sucesso");
@@ -61,12 +61,12 @@ async function createProfessor(req, res) {
 async function updateProfessor(req, res) {
   // Extrai o ID do usuário da URL e os novos dados do corpo da requisição
   const id_prof = req.params.id;
-  const { nif_prof, nome_prof, adm } = req.body;
+  const { nif_prof, nome_prof } = req.body;
   try {
     // Chama o método do modelo para atualizar o usuário com base no ID e nos dados fornecidos
    if (!id_prof){
     res.status(400).send({message: 'Dados incompletos'}); return;  }
-    await professorModel.updateProfessor(id_prof,nif_prof, nome_prof, adm );
+    await professorModel.updateProfessor(id_prof,nif_prof, nome_prof);
     
     // Retorna uma mensagem de sucesso após a atualização
     res.send("Professor(a) atualizado(a) com sucesso");

@@ -14,16 +14,13 @@ router.get("/", agenda2Controller.getAllAgenda2);
 router.get("/:id", agenda2Controller.getAgenda2);
 
 // Rota POST para criar um novo agendamento
-router.post("/", agenda2Controller.createAgenda2);
+router.post("/:id", agenda2Controller.createAgenda2);
 
 // Rota PUT para atualizar um agendamento existente pelo ID
 router.put("/:id", agenda2Controller.updateAgenda2);
 
 // Rota DELETE para deletar um agendamento específico pelo ID
 router.delete("/:id", agenda2Controller.deleteAgenda2);
-
-// Rota GET para obter um agendamento específico pelo ID
-router.get("/data/:data", agenda2Controller.getAgenda2ByData);
 
 // Exporta o roteador para que ele possa ser usado na aplicação principal (app.js)
 module.exports = router;

@@ -43,10 +43,10 @@ async function getAgenda2(req, res) {
 // Função para criar um novo usuário
 async function createAgenda2(req, res) {
   // Extrai as informações do novo usuário a partir do corpo da requisição (name, email, age)
-  const {data_sel2, hr_entrada2, hr_saida2, id_prof, cod_eqp } = req.body;
+  const {data_sel2, horario2, id_prof, cod_eqp } = req.body;
   try {
     // Chama o método do modelo para criar o novo usuário com os dados fornecidos
-    await agenda2Model.createAgenda2(data_sel2, hr_entrada2, hr_saida2, id_prof, cod_eqp);
+    await agenda2Model.createAgenda2(data_sel2, horario2, id_prof, cod_eqp);
     
     // Retorna um status 201 (criado com sucesso)
     res.status(201).send("Agenda criada com sucesso");
@@ -61,12 +61,12 @@ async function createAgenda2(req, res) {
 async function updateAgenda2(req, res) {
   // Extrai o ID do usuário da URL e os novos dados do corpo da requisição
   const agenda2_id = req.params.id;
-  const { data_sel2, hr_entrada2, hr_saida2,id_prof, cod_eqp } = req.body;
+  const { data_sel2, horario2, id_prof, cod_eqp } = req.body;
   try {
     // Chama o método do modelo para atualizar o usuário com base no ID e nos dados fornecidos
    if (!agenda2_id){
     res.status(400).send({message: 'Dados incompletos'}); return;  }
-    await agenda2Model.updateAgenda2(agenda2_id, data_sel2, hr_entrada2, hr_saida2, id_prof, cod_eqp);
+    await agenda2Model.updateAgenda2(agenda2_id, data_sel2, horario2, id_prof, cod_eqp);
     
     // Retorna uma mensagem de sucesso após a atualização
     res.send("Agenda atualizada com sucesso");
@@ -94,27 +94,6 @@ async function deleteAgenda2(req, res) {
   }
 }
 
-async function getAgenda2ByData(req, res) {
-  // Extrai o ID do usuário da requisição (usado na URL: /users/:id)
-  const data = req.params.data;
-  try {
-    // Chama o método do modelo para obter o usuário com base no ID fornecido
-    const agenda2 = await agenda2Model.getAgenda2ByData(data);
-    
-    // Se o usuário não for encontrado, retorna um status 404 (não encontrado)
-    if (!agenda2) {
-      res.status(404).send("Agenda não encontrada");
-    } else {
-      // Se o usuário for encontrado, retorna os dados em formato JSON
-      res.json(agenda2);
-    }
-  } catch (err) {
-    // Exibe o erro no console e retorna uma resposta com status 500
-    console.error(err.message);
-    res.status(500).send("Erro ao obter a agenda");
-  }
-}
-
 // Exporta as funções do controller para serem usadas nas rotas da aplicação
 module.exports = {
   getAllAgenda2,
@@ -122,5 +101,4 @@ module.exports = {
   createAgenda2,
   updateAgenda2,
   deleteAgenda2,
-  getAgenda2ByData,
 };

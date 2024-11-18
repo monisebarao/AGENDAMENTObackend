@@ -1,46 +1,33 @@
-// controllers/agendamentoController.js
-
-// Importa o modelo de usuário que contém a lógica de interação com o banco de dados
 const agenda1Model = require("../models/agenda1Model");
 
-// Função para obter todos os usuários
+// Função para obter todos os agendamentos
 async function getAllAgenda1(req, res) {
   try {
-    // Chama o método do modelo para obter todos os usuários do banco de dados
     const agenda1 = await agenda1Model.getAllAgenda1();
-    
-    // Retorna a lista de usuários em formato JSON
     res.json(agenda1);
   } catch (err) {
-    // Exibe o erro no console, se houver, e retorna uma resposta com status 500
     console.error(err.message);
     res.status(500).send("Erro ao obter as agendas");
   }
 }
 
-// Função para obter um usuário específico pelo ID
+// Função para obter um agendamento pelo ID
 async function getAgenda1(req, res) {
-  // Extrai o ID do usuário da requisição (usado na URL: /users/:id)
-  const id = req.params.id;
+  const id = parseInt(req.params.id);
   try {
-    // Chama o método do modelo para obter o usuário com base no ID fornecido
     const agenda1 = await agenda1Model.getAgenda1ById(id);
-    
-    // Se o usuário não for encontrado, retorna um status 404 (não encontrado)
     if (!agenda1) {
       res.status(404).send("Agenda não encontrada");
     } else {
-      // Se o usuário for encontrado, retorna os dados em formato JSON
       res.json(agenda1);
     }
   } catch (err) {
-    // Exibe o erro no console e retorna uma resposta com status 500
     console.error(err.message);
     res.status(500).send("Erro ao obter a agenda");
   }
 }
 
-// Função para criar um novo usuário
+// Função para criar um agendamento
 async function createAgenda1(req, res) {
   const { data_sel1, hr_entrada1, hr_saida1, turma1, disciplina1, id_prof, cod_sala } = req.body;
 
@@ -68,59 +55,33 @@ async function createAgenda1(req, res) {
   }
 }
 
-// Função para atualizar um usuário existente
+// Função para atualizar um agendamento
 async function updateAgenda1(req, res) {
-  // Extrai o ID do usuário da URL e os novos dados do corpo da requisição
-  const agenda1_id = req.params.id;
-  const { data_sel1, hr_entrada1, hr_saida1, id_prof, cod_sala } = req.body;
+  const agenda1_id = parseInt(req.params.id);
+  const { data_sel1, hr_entrada1, hr_saida1, turma1, disciplina1, id_prof, cod_sala } = req.body;
+
+  if (!data_sel1 || !hr_entrada1 || !hr_saida1 || !turma1 || !disciplina1 || !id_prof || !cod_sala) {
+    return res.status(400).send("Todos os campos são obrigatórios.");
+  }
+
   try {
-    // Chama o método do modelo para atualizar o usuário com base no ID e nos dados fornecidos
-    await agenda1Model.updateAgenda1(agenda1_id ,data_sel1, hr_entrada1, hr_saida1,  id_prof, cod_sala );
-    
-    // Retorna uma mensagem de sucesso após a atualização
+    await agenda1Model.updateAgenda1(agenda1_id, data_sel1, hr_entrada1, hr_saida1, turma1, disciplina1, id_prof, cod_sala);
     res.send("Agenda atualizada com sucesso");
   } catch (err) {
-    // Exibe o erro no console e retorna uma resposta com status 500
-    console.error(err.message);
+    console.error("Erro ao atualizar a agenda:", err.message);
     res.status(500).send("Erro ao atualizar a agenda");
   }
 }
 
-// Função para deletar um usuário
+// Função para deletar um agendamento pelo ID
 async function deleteAgenda1(req, res) {
-  // Extrai o ID do usuário da URL
-  const id = req.params.id;
+  const id = parseInt(req.params.id);
   try {
-    // Chama o método do modelo para deletar o usuário com base no ID fornecido
     await agenda1Model.deleteAgenda1(id);
-    
-    // Retorna uma mensagem de sucesso após a exclusão
     res.send("Agenda deletada com sucesso");
   } catch (err) {
-    // Exibe o erro no console e retorna uma resposta com status 500
-    console.error(err.message);
+    console.error("Erro ao deletar a agenda:", err.message);
     res.status(500).send("Erro ao deletar a agenda");
-  }
-}
-
-async function getAgenda1ByData(req, res) {
-  // Extrai o ID do usuário da requisição (usado na URL: /users/:id)
-  const data = req.params.data;
-  try {
-    // Chama o método do modelo para obter o usuário com base no ID fornecido
-    const agenda1 = await agenda1Model.getAgenda1ByData(data);
-    
-    // Se o usuário não for encontrado, retorna um status 404 (não encontrado)
-    if (!agenda1) {
-      res.status(404).send("Agenda não encontrada");
-    } else {
-      // Se o usuário for encontrado, retorna os dados em formato JSON
-      res.json(agenda1);
-    }
-  } catch (err) {
-    // Exibe o erro no console e retorna uma resposta com status 500
-    console.error(err.message);
-    res.status(500).send("Erro ao obter a agenda");
   }
 }
 
@@ -131,5 +92,4 @@ module.exports = {
   createAgenda1,
   updateAgenda1,
   deleteAgenda1,
-  getAgenda1ByData,
 };

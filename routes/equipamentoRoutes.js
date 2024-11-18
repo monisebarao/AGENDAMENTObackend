@@ -14,7 +14,7 @@ router.get("/", equipamentoController.getAllEquipamento);
 router.get("/:id", equipamentoController.getEquipamento);
 
 // Rota POST para criar um novo agendamento
-router.post("/", equipamentoController.createEquipamento);
+router.post("/:id", equipamentoController.createEquipamento);
 
 // Rota PUT para atualizar um agendamento existente pelo ID
 router.put("/:id", equipamentoController.updateEquipamento);

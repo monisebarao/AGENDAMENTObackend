@@ -18,7 +18,7 @@ async function getAllSalaConsulta(req, res) {
   }
 }
 
-<<<<<<< HEAD
+
 async function createSalaConsulta (req, res) {
   // Extrai as informações do novo usuário a partir do corpo da requisição (name, email, age)
   const { nome_sala, nome_prof, dtinicio, hr_entrada1, hr_saida1, turma } = req.body;
@@ -41,7 +41,7 @@ module.exports = {
   getAllSalaConsulta,
   createSalaConsulta,
  
-=======
+}
 async function getConsultaLMT(req, res) {
   const id = req.params.id;
   try {
@@ -170,5 +170,4 @@ module.exports = {
   getConsultaBioquimica,
   getConsultaFisica,
   getConsultaSenai,
->>>>>>> b4302de1ecc1231b4674ee801d3c277277527896
 };

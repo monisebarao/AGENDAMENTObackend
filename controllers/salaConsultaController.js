@@ -5,20 +5,37 @@ const salaConsultaModel = require("../models/salaConsultaModel");
 
 // Função para obter todos os usuários
 async function getAllSalaConsulta(req, res) {
+  console.log('Response object:', res); // Log the response object to inspect it
   try {
-    // Chama o método do modelo para obter todos os usuários do banco de dados
-    const salaConsulta = await salaConsultaModel.getAllSalaConsulta();
-    
-    // Retorna a lista de usuários em formato JSON
-    res.json(salaConsulta);
+      const salaConsulta = await salaConsultaModel.getAllSalaConsulta();
+      res.json(salaConsulta);
   } catch (err) {
-    // Exibe o erro no console, se houver, e retorna uma resposta com status 500
-    console.error(err.message);
-    res.status(500).send("Erro ao obter os agendamentos de sala");
+      console.error(err.message);
+      res.status(500).send("Erro ao obter os agendamentos de sala");
   }
 }
 
-<<<<<<< HEAD
+async function getAgenda1BySala(req, res) {
+  // Extrai o ID do usuário da requisição (usado na URL: /users/:id)
+  const cod_sala = req.params.cod_sala;
+  try {
+    // Chama o método do modelo para obter o usuário com base no ID fornecido
+    const user = await salaConsultaModel.getAgenda1BySala(cod_sala);
+    
+    // Se o usuário não for encontrado, retorna um status 404 (não encontrado)
+    if (!user) {
+      res.status(404).send("Usuário não encontrado");
+    } else {
+      // Se o usuário for encontrado, retorna os dados em formato JSON
+      res.json(user);
+    }
+  } catch (err) {
+    // Exibe o erro no console e retorna uma resposta com status 500
+    console.error(err.message);
+    res.status(500).send("Erro ao obter o usuário");
+  }
+}
+
 async function createSalaConsulta (req, res) {
   // Extrai as informações do novo usuário a partir do corpo da requisição (name, email, age)
   const { nome_sala, nome_prof, dtinicio, hr_entrada1, hr_saida1, turma } = req.body;
@@ -40,135 +57,5 @@ async function createSalaConsulta (req, res) {
 module.exports = {
   getAllSalaConsulta,
   createSalaConsulta,
- 
-=======
-async function getConsultaLMT(req, res) {
-  const id = req.params.id;
-  try {
-    // Chama o método do modelo para obter o usuário com base no ID fornecido
-    const salaConsulta = await salaConsultaModel.getConsultaLMT(id);
-    
-    // Se o usuário não for encontrado, retorna um status 404 (não encontrado)
-    if (!salaConsulta) {
-      res.status(404).send("Agendamento não encontrado");
-    } else {
-      // Se o usuário for encontrado, retorna os dados em formato JSON
-      res.json(sala);
-    }
-  } catch (err) {
-    // Exibe o erro no console e retorna uma resposta com status 500
-    console.error(err.message);
-    res.status(500).send("Erro ao obter a agendamento");
-  }
-}
-
-async function getConsultaMaker(req, res) {
-  const id = req.params.id;
-  try {
-    // Chama o método do modelo para obter o usuário com base no ID fornecido
-    const salaConsulta = await salaConsultaModel.getConsultaMaker(id);
-    
-    // Se o usuário não for encontrado, retorna um status 404 (não encontrado)
-    if (!salaConsulta) {
-      res.status(404).send("Agendamento não encontrado");
-    } else {
-      // Se o usuário for encontrado, retorna os dados em formato JSON
-      res.json(sala);
-    }
-  } catch (err) {
-    // Exibe o erro no console e retorna uma resposta com status 500
-    console.error(err.message);
-    res.status(500).send("Erro ao obter a agendamento");
-  }
-}
-
-async function getConsultaBiblioteca(req, res) {
-  const id = req.params.id;
-  try {
-    // Chama o método do modelo para obter o usuário com base no ID fornecido
-    const salaConsulta = await salaConsultaModel.getConsultaBiblioteca(id);
-    
-    // Se o usuário não for encontrado, retorna um status 404 (não encontrado)
-    if (!salaConsulta) {
-      res.status(404).send("Agendamento não encontrado");
-    } else {
-      // Se o usuário for encontrado, retorna os dados em formato JSON
-      res.json(sala);
-    }
-  } catch (err) {
-    // Exibe o erro no console e retorna uma resposta com status 500
-    console.error(err.message);
-    res.status(500).send("Erro ao obter a agendamento");
-  }
-}
-
-async function getConsultaBioquimica(req, res) {
-  const id = req.params.id;
-  try {
-    // Chama o método do modelo para obter o usuário com base no ID fornecido
-    const salaConsulta = await salaConsultaModel.getConsultaBioquimica(id);
-    
-    // Se o usuário não for encontrado, retorna um status 404 (não encontrado)
-    if (!salaConsulta) {
-      res.status(404).send("Agendamento não encontrado");
-    } else {
-      // Se o usuário for encontrado, retorna os dados em formato JSON
-      res.json(sala);
-    }
-  } catch (err) {
-    // Exibe o erro no console e retorna uma resposta com status 500
-    console.error(err.message);
-    res.status(500).send("Erro ao obter a agendamento");
-  }
-}
-
-async function getConsultaFisica(req, res) {
-  const id = req.params.id;
-  try {
-    // Chama o método do modelo para obter o usuário com base no ID fornecido
-    const salaConsulta = await salaConsultaModel.getConsultaFisica(id);
-    
-    // Se o usuário não for encontrado, retorna um status 404 (não encontrado)
-    if (!salaConsulta) {
-      res.status(404).send("Agendamento não encontrado");
-    } else {
-      // Se o usuário for encontrado, retorna os dados em formato JSON
-      res.json(sala);
-    }
-  } catch (err) {
-    // Exibe o erro no console e retorna uma resposta com status 500
-    console.error(err.message);
-    res.status(500).send("Erro ao obter a agendamento");
-  }
-}
-
-async function getConsultaSenai(req, res) {
-  const id = req.params.id;
-  try {
-    // Chama o método do modelo para obter o usuário com base no ID fornecido
-    const salaConsulta = await salaConsultaModel.getConsultaSenai(id);
-    
-    // Se o usuário não for encontrado, retorna um status 404 (não encontrado)
-    if (!salaConsulta) {
-      res.status(404).send("Agendamento não encontrado");
-    } else {
-      // Se o usuário for encontrado, retorna os dados em formato JSON
-      res.json(sala);
-    }
-  } catch (err) {
-    // Exibe o erro no console e retorna uma resposta com status 500
-    console.error(err.message);
-    res.status(500).send("Erro ao obter a agendamento");
-  }
-}
-
-module.exports = {
-  getAllSalaConsulta,
-  getConsultaLMT,
-  getConsultaMaker,
-  getConsultaBiblioteca,
-  getConsultaBioquimica,
-  getConsultaFisica,
-  getConsultaSenai,
->>>>>>> b4302de1ecc1231b4674ee801d3c277277527896
+  getAgenda1BySala,
 };

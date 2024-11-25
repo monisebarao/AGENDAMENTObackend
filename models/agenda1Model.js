@@ -48,7 +48,6 @@ async function getAgenda1ById(id) {
   return result.length > 0 ? result[0] : null;
 }
 
-<<<<<<< HEAD
 async function createAgenda1(data_sel1, hr_entrada1, hr_saida1, turma1, disciplina1, id_prof, cod_sala) {
   const query = `INSERT INTO agenda1 (data_sel1, hr_entrada1, hr_saida1, turma1, disciplina1, id_prof, cod_sala) VALUES (@data_sel1, @hr_entrada1, @hr_saida1, @turma1, @disciplina1, @id_prof, @cod_sala);`;
 
@@ -75,11 +74,9 @@ async function createAgenda1(data_sel1, hr_entrada1, hr_saida1, turma1, discipli
 
     await executeQuery(query, params);
   }
-=======
 // Função para criar um agendamento
 async function createAgenda1(data_sel1, hr_entrada1, hr_saida1, turma1, disciplina1, id_prof, cod_sala) {
   const query = `INSERT INTO agenda1 (data_sel1, hr_entrada1, hr_saida1, turma1, disciplina1, id_prof, cod_sala) VALUES (@data_sel1, @hr_entrada1, @hr_saida1, @turma1, @disciplina1, @id_prof, @cod_sala);`;
->>>>>>> f4a5c6e62bb07bf40ba17d43135efb13c8768b48
 
   console.log("Parâmetros recebidos para inserção:", {
     data_sel1,

@@ -27,6 +27,8 @@ app.use('/professor', ProfessorRoutes);
 const EquipamentoRoutes = require('./routes/equipamentoRoutes'); // Certifique-se de que este arquivo também existe
 app.use('/equipamento', EquipamentoRoutes);
 
+const SalaConsultaRoutes = require('./routes/salaConsultaRoutes'); // Certifique-se de que este arquivo também existe
+app.use('/sala_consulta', SalaConsultaRoutes);
 
 
 // Iniciando o servidor na porta especificada

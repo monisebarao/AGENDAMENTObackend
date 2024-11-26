@@ -19,7 +19,7 @@ router.get("/:id", salaController.getSala);
 
 // Rota POST para criar um novo usuário
 // Chama o método "createUser" do controller ao acessar "/sala" com dados no corpo da requisição
-router.post("/", salaController.createSala);
+router.post("/:id", salaController.createSala);
 
 // Rota PUT para atualizar um usuário existente pelo ID
 // Chama o método "updateUser" do controller ao acessar "/sala/:id" e fornecer novos dados no corpo da requisição

@@ -49,16 +49,33 @@ async function getAgenda2ById(id) {
   return sala.length > 0 ? sala[0] : null;
 }
 
-async function createAgenda2(data_sel2, horario2, id_prof, cod_eqp) {
-  const query = `INSERT INTO agenda2 (data_sel2, horario2, id_prof, cod_eqp) VALUES ( @data_sel2, @horario2, @id_prof, @cod_eqp);`;
-  const params = [
-    { name: "data_sel2", type: TYPES.NVarChar, value: data_sel2 },
-    { name: "horario2", type: TYPES.NVarChar, value: horario2 },
-    { name: "id_prof", type: TYPES.Int, value: id_prof },
-    { name: "cod_eqp", type: TYPES.Int, value: cod_eqp },
-  ];
-  await executeQuery(query, params);
-}
+async function createAgenda2(data_sel2, hr_entrada2, hr_saida2, turma2, disciplina2, id_prof, cod_eqp, qnt_eqp) {
+  const query = `INSERT INTO agenda2 (data_sel2, hr_entrada2, hr_saida2, turma2, disciplina2, id_prof, cod_eqp, qnt_eqp) VALUES (@data_sel2, @hr_entrada2, @hr_saida2, @turma2, @disciplina2, @id_prof, @cod_eqp, @qnt_eqp);`;
+
+  console.log("Parâmetros recebidos para inserção:", {
+    data_sel2,
+    hr_entrada2,
+    hr_saida2,
+    turma2,
+    disciplina2,
+    id_prof,
+    cod_eqp,
+    qnt_eqp
+  });
+  
+    const params = [
+      { name: "data_sel2", type: TYPES.NVarChar, value: data_sel2 },
+      { name: "hr_entrada2", type: TYPES.NVarChar, value: hr_entrada2 },
+      { name: "hr_saida2", type: TYPES.NVarChar, value: hr_saida2 },
+      { name: "turma2", type: TYPES.NVarChar, value: turma2 },
+      { name: "disciplina2", type: TYPES.NVarChar, value: disciplina2 },
+      { name: "id_prof", type: TYPES.Int, value: id_prof },
+      { name: "cod_eqp", type: TYPES.Int, value: cod_eqp },
+      { name: "qnt_eqp", type: TYPES.Int, value: qnt_eqp },
+    ];
+
+    await executeQuery(query, params);
+  }
 
 async function updateAgenda2(agenda2_id, data_sel2,horario2,id_prof,cod_eqp) {  // Corrigido aqui
   const query = `UPDATE agenda2 SET data_sel2 = @data_sel2, horario2 = @horario2, id_prof = @id_prof, cod_eqp = @cod_eqp  WHERE agenda2_id = @agenda2_id;`;  // Ajustado para atualizar pelo cod_sala

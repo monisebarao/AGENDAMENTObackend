@@ -48,32 +48,6 @@ async function getAgenda1ById(id) {
   return result.length > 0 ? result[0] : null;
 }
 
-async function createAgenda1(data_sel1, hr_entrada1, hr_saida1, turma1, disciplina1, id_prof, cod_sala) {
-  const query = `INSERT INTO agenda1 (data_sel1, hr_entrada1, hr_saida1, turma1, disciplina1, id_prof, cod_sala) VALUES (@data_sel1, @hr_entrada1, @hr_saida1, @turma1, @disciplina1, @id_prof, @cod_sala);`;
-
-  console.log("Parâmetros recebidos para inserção:", {
-    data_sel1,
-    hr_entrada1,
-    hr_saida1,
-    turma1,
-    disciplina1,
-    id_prof,
-    cod_sala,
-  });
-  
-    const params = [
-      { name: "data_sel1", type: TYPES.NVarChar, value: data_sel1 },
-      { name: "hr_entrada1", type: TYPES.NVarChar, value: hr_entrada1 },
-      { name: "hr_saida1", type: TYPES.NVarChar, value: hr_saida1 },
-      { name: "turma1", type: TYPES.NVarChar, value: turma1 },
-      { name: "disciplina1", type: TYPES.NVarChar, value: disciplina1 },
-      { name: "id_prof", type: TYPES.Int, value: id_prof },
-      { name: "cod_sala", type: TYPES.Int, value: cod_sala },
-
-    ];
-
-    await executeQuery(query, params);
-  }
 // Função para criar um agendamento
 async function createAgenda1(data_sel1, hr_entrada1, hr_saida1, turma1, disciplina1, id_prof, cod_sala) {
   const query = `INSERT INTO agenda1 (data_sel1, hr_entrada1, hr_saida1, turma1, disciplina1, id_prof, cod_sala) VALUES (@data_sel1, @hr_entrada1, @hr_saida1, @turma1, @disciplina1, @id_prof, @cod_sala);`;

@@ -13,5 +13,7 @@ const salaEquipamentoController = require("../controllers/equipamentoConsultaCon
 // Chama o método "getUsers" do controller quando a rota raiz "/users" for acessada
 router.get("/", salaEquipamentoController.getAllEquipamentoConsulta);
 
+router.get("/:cod_eqp", salaEquipamentoController.getAgenda2ByEqp);
+
 // Exporta o roteador para que ele possa ser usado na aplicação principal (app.js)
 module.exports = router;

@@ -43,10 +43,10 @@ async function getAgenda2(req, res) {
 // Função para criar um novo usuário
 async function createAgenda2(req, res) {
   // Extrai as informações do novo usuário a partir do corpo da requisição (name, email, age)
-  const {data_sel2, horario2, id_prof, cod_eqp } = req.body;
+  const {data_sel2, hr_entrada2, hr_saida2, turma2, disciplina2, id_prof, cod_eqp, qnt_eqp } = req.body;
   try {
     // Chama o método do modelo para criar o novo usuário com os dados fornecidos
-    await agenda2Model.createAgenda2(data_sel2, horario2, id_prof, cod_eqp);
+    await agenda2Model.createAgenda2(data_sel2, hr_entrada2, hr_saida2, turma2, disciplina2, id_prof, cod_eqp, qnt_eqp);
     
     // Retorna um status 201 (criado com sucesso)
     res.status(201).send("Agenda criada com sucesso");

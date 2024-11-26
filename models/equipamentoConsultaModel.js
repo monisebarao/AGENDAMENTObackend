@@ -42,7 +42,19 @@ async function getAllEquipamentoConsulta() {
   return await executeQuery(query);
 }
 
+async function getAgenda2ByEqp(cod_eqp) {
+  const query = "select * from equipamento_consulta where cod_eqp = @cod_eqp"; 
+  console.log ('query', query)
+  // Query SQL com um parâmetro para filtrar pelo ID
+  const params = [{ name: "cod_eqp", type: TYPES.Int, value: cod_eqp }];  // Define o parâmetro @id para ser passado na query
+  const users = await executeQuery(query, params); 
+  console.log ('users', users)
+  // Executa a query com os parâmetros
+  return users;  // Retorna o primeiro usuário se houver algum resultado, ou null se não houver
+
+}
 
 module.exports = {
   getAllEquipamentoConsulta,
+getAgenda2ByEqp,
 };

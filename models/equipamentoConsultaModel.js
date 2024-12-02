@@ -54,7 +54,21 @@ async function getAgenda2ByEqp(cod_eqp) {
 
 }
 
+async function getAgenda2ByData(data_sel2) {
+  const query = "select * from equipamento_consulta where data_sel2 = @data_sel2"; 
+  console.log ('query', query)
+  // Query SQL com um parâmetro para filtrar pelo ID
+  const params = [{ name: "data_sel2", type: TYPES.Int, value: data_sel2 }];  // Define o parâmetro @id para ser passado na query
+  const users = await executeQuery(query, params); 
+  console.log ('users', users)
+  // Executa a query com os parâmetros
+  return users;  // Retorna o primeiro usuário se houver algum resultado, ou null se não houver
+
+}
+
 module.exports = {
   getAllEquipamentoConsulta,
 getAgenda2ByEqp,
+getAgenda2ByData,
+
 };

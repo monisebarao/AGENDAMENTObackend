@@ -54,6 +54,17 @@ async function getAgenda1BySala(cod_sala) {
 
 }
 
+async function getAgenda1ByData(data_sel1) {
+  const query = "select * from sala_consulta where data_sel1 >= @data_sel1"; 
+  console.log ('query', query)
+  // Query SQL com um parâmetro para filtrar pelo ID
+  const params = [{ name: "data_sel1", type: TYPES.Int, value: data_sel1 }];  // Define o parâmetro @id para ser passado na query
+  const users = await executeQuery(query, params); 
+  console.log ('users', users)
+  // Executa a query com os parâmetros
+  return users;  // Retorna o primeiro usuário se houver algum resultado, ou null se não houver
+
+}
 
 async function createSalaConsulta(nome_sala, nome_prof, dtinicio, hr_entrada1, hr_saida1, turma) {
   const query = `INSERT INTO agenda1 (nome_sala, nome_prof, dtinicio, hr_entrada1, hr_saida1) VALUES ( @nome_sala, @nome_prof, @dtinicio, @hr_entrada1, @hr_saida1);`;
@@ -71,5 +82,6 @@ async function createSalaConsulta(nome_sala, nome_prof, dtinicio, hr_entrada1, h
 module.exports = {
   createSalaConsulta,
   getAllSalaConsulta,
-  getAgenda1BySala
+  getAgenda1BySala,
+  getAgenda1ByData,
 };

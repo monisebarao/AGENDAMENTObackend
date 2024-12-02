@@ -15,5 +15,7 @@ router.get("/", salaEquipamentoController.getAllEquipamentoConsulta);
 
 router.get("/:cod_eqp", salaEquipamentoController.getAgenda2ByEqp);
 
+router.get("/:data_sel2", salaEquipamentoController.getAgenda2ByData);
+
 // Exporta o roteador para que ele possa ser usado na aplicação principal (app.js)
 module.exports = router;

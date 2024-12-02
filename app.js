@@ -30,6 +30,8 @@ app.use('/equipamento', EquipamentoRoutes);
 const SalaConsultaRoutes = require('./routes/salaConsultaRoutes'); // Certifique-se de que este arquivo também existe
 app.use('/sala_consulta', SalaConsultaRoutes);
 
+const EquipamentoConsultaRoutes = require('./routes/equipamentoConsultaRoutes'); // Certifique-se de que este arquivo também existe
+app.use('/equipamento_consulta', EquipamentoConsultaRoutes);
 
 // Iniciando o servidor na porta especificada
 app.listen(port, () => {

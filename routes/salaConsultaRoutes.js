@@ -17,4 +17,6 @@ router.get("/", salaConsultaController.createSalaConsulta);
 
 router.get("/:cod_sala", salaConsultaController.getAgenda1BySala);
 
+router.get("/:data_sel1", salaConsultaController.getAgenda1ByData);
+
 module.exports = router;

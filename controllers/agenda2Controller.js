@@ -40,6 +40,7 @@ async function getAgenda2(req, res) {
   }
 }
 
+
 // Função para criar um novo usuário
 async function createAgenda2(req, res) {
   // Extrai as informações do novo usuário a partir do corpo da requisição (name, email, age)

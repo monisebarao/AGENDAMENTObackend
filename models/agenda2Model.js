@@ -52,6 +52,7 @@ async function getAgenda2ById(id) {
 async function createAgenda2(data_sel2, hr_entrada2, hr_saida2, turma2, disciplina2, id_prof, cod_eqp, qnt_eqp) {
   const query = `INSERT INTO agenda2 (data_sel2, hr_entrada2, hr_saida2, turma2, disciplina2, id_prof, cod_eqp, qnt_eqp) VALUES (@data_sel2, @hr_entrada2, @hr_saida2, @turma2, @disciplina2, @id_prof, @cod_eqp, @qnt_eqp);`;
 
+  
   console.log("Parâmetros recebidos para inserção:", {
     data_sel2,
     hr_entrada2,
